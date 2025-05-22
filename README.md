@@ -1,7 +1,7 @@
 # 📷 Compression d’image par SVD de rang k
 <!-- Titre principal du projet -->
 
-## Contributeurs
+## 👥 Contributeurs
 - ANDRIANARIVONY Heritsihoarana Kevin
 - Mouandhui IBADA
 - RANARIMANANA Liana Miotisoa
@@ -33,7 +33,26 @@ racine_du_projet/
 │   └── image.jpg        # Image test à compresser
 │
 ├── src/
-│   └── exo.py           # Script principal (le code Python du projet)
+│   └── default.py       # Script par défaut pour comparaison
+│   └── subject.py       # Script de l'exercice (le code Python du projet)
 │
 └── README.md            # Ce fichier d'explication
 
+```
+## ▶️ Exécution
+
+Installer les dépendances:
+
+```bash
+pip install -r requirements.txt
+```
+
+Puis, depuis le dossier `src`, lance le script avec :
+
+```bash
+python subject.py
+```
+Ou simplement depuis la racine du projet avec:
+
+```bash
+python src/subject.py
