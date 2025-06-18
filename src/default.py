@@ -1,13 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
+from tkinter import Tk, filedialog
 import os
 
-# === 1. Charger et convertir l'image en niveaux de gris ===
+# === 1. Sélection interactive de l'image ===
 
-# Chemin absolu vers le fichier image, peu importe où on exécute le script
-base_dir    = os.path.dirname(os.path.abspath(__file__))
-image_path  = os.path.join(base_dir, '..', 'images', 'image.jpg')
+# Ouvre une boîte de dialogue pour choisir un fichier image
+Tk().withdraw()  # Cache la fenêtre principale de Tkinter
+image_path = filedialog.askopenfilename(
+    title="Choisir une image",
+    filetypes=[("Fichiers image", "*.jpg *.jpeg *.png *.bmp *.tiff")]
+)
+
+if not image_path:
+    raise Exception("Aucune image sélectionnée.")
 
 # Chargement et conversion en niveaux de gris
 img = Image.open(image_path).convert('L')  # L = "luminance"
