@@ -60,18 +60,6 @@ def choisir_k_pour_energie(S, seuil=0.90):
     k               = np.searchsorted(energie_cumulee, seuil * energie_totale) + 1
     return k
 
-# === Tracé de l'énergie cumulée ===
-energie = np.cumsum(S**2) / np.sum(S**2)
-plt.figure(figsize=(8, 4))
-plt.plot(range(1, len(S) + 1), energie, label="Énergie cumulée")
-plt.axhline(y=0.90, color='red', linestyle='--', label='Seuil 90%')
-plt.xlabel('k')
-plt.ylabel('Énergie')
-plt.title("Énergie cumulée en fonction de k")
-plt.legend()
-plt.grid(True)
-plt.show()
-
 # === Main ===
 
 # Chemin vers l’image
@@ -84,6 +72,18 @@ A     = np.asarray(image, dtype = np.float64)
 
 # Calcul SVD
 U, S, Vt = calculate_svd(A)
+
+# === Tracé de l'énergie cumulée ===
+energie = np.cumsum(S**2) / np.sum(S**2)
+plt.figure(figsize=(8, 4))
+plt.plot(range(1, len(S) + 1), energie, label="Énergie cumulée")
+plt.axhline(y=0.90, color='red', linestyle='--', label='Seuil 90%')
+plt.xlabel('k')
+plt.ylabel('Énergie')
+plt.title("Énergie cumulée en fonction de k")
+plt.legend()
+plt.grid(True)
+plt.show()
 
 # Test avec plusieurs valeurs de k
 ks        = [5, 20, 50, 100]
