@@ -110,6 +110,31 @@ plt.title(f'Compression auto : k={k_auto} (90% énergie)')
 plt.axis('off')
 plt.show()
 
+choix = input("Choisissez le mode :\n1 → k manuel\n2 → seuil d’énergie (%)\n> ")
+
+if choix == "1":
+    k_user = int(input("Entrez la valeur de k : "))
+    A_user = compress_image(U, S, Vt, k_user)
+    mse_user = erreur_mse(A, A_user)
+    tc_user = taux_compression(*A.shape, k_user)
+    plt.figure(figsize=(6, 5))
+    plt.imshow(A_user, cmap='gray')
+    plt.title(f'k = {k_user} | MSE = {mse_user:.2f} | TC = {tc_user:.2%}')
+    plt.axis('off')
+    plt.show()
+elif choix == "2":
+    seuil_user = float(input("Entrez le seuil (ex: 0.9 pour 90%) : "))
+    k_user = choisir_k_pour_energie(S, seuil_user)
+    A_user = compress_image(U, S, Vt, k_user)
+    mse_user = erreur_mse(A, A_user)
+    tc_user = taux_compression(*A.shape, k_user)
+    plt.figure(figsize=(6, 5))
+    plt.imshow(A_user, cmap='gray')
+    plt.title(f'k = {k_user} | MSE = {mse_user:.2f} | TC = {tc_user:.2%}')
+    plt.axis('off')
+    plt.show()
+
+
 # === Animation de la compression de l’image ===
 
 plt.figure(figsize=(6, 5))
