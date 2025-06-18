@@ -60,18 +60,6 @@ def choisir_k_pour_energie(S, seuil=0.90):
     k               = np.searchsorted(energie_cumulee, seuil * energie_totale) + 1
     return k
 
-# === Tracé de l'énergie cumulée ===
-energie = np.cumsum(S**2) / np.sum(S**2)
-plt.figure(figsize=(8, 4))
-plt.plot(range(1, len(S) + 1), energie, label="Énergie cumulée")
-plt.axhline(y=0.90, color='red', linestyle='--', label='Seuil 90%')
-plt.xlabel('k')
-plt.ylabel('Énergie')
-plt.title("Énergie cumulée en fonction de k")
-plt.legend()
-plt.grid(True)
-plt.show()
-
 # === Main ===
 
 # Chemin vers l’image
@@ -115,30 +103,6 @@ seuil    = 0.90
 k_auto   = choisir_k_pour_energie(S, seuil)
 A_auto   = compress_image(U, S, Vt, k_auto)
 mse_auto = erreur_mse(A, A_auto)
-
-choix = input("Choisissez le mode :\n1 → k manuel\n2 → seuil d’énergie (%)\n> ")
-
-if choix == "1":
-    k_user = int(input("Entrez la valeur de k : "))
-    A_user = compress_image(U, S, Vt, k_user)
-    mse_user = erreur_mse(A, A_user)
-    tc_user = taux_compression(*A.shape, k_user)
-    plt.figure(figsize=(6, 5))
-    plt.imshow(A_user, cmap='gray')
-    plt.title(f'k = {k_user} | MSE = {mse_user:.2f} | TC = {tc_user:.2%}')
-    plt.axis('off')
-    plt.show()
-elif choix == "2":
-    seuil_user = float(input("Entrez le seuil (ex: 0.9 pour 90%) : "))
-    k_user = choisir_k_pour_energie(S, seuil_user)
-    A_user = compress_image(U, S, Vt, k_user)
-    mse_user = erreur_mse(A, A_user)
-    tc_user = taux_compression(*A.shape, k_user)
-    plt.figure(figsize=(6, 5))
-    plt.imshow(A_user, cmap='gray')
-    plt.title(f'k = {k_user} | MSE = {mse_user:.2f} | TC = {tc_user:.2%}')
-    plt.axis('off')
-    plt.show()
 
 plt.figure(figsize = (6, 5))
 plt.imshow(A_auto, cmap = 'gray')
