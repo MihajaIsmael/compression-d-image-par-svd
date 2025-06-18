@@ -2,7 +2,7 @@
 <!-- Titre principal du projet -->
 
 ## 👥 Contributeurs
-- ANDRIANARIVONY Heritsihoarana Kevin
+- ANDRIANARIVONY Heritsihoarana Kevin  sds
 - Mouandhui IBADA
 - RANARIMANANA Liana Miotisoa
 - RAVALOMANDA Ismael
