@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
+from tkinter import Tk, filedialog
 import os
 import time
 
@@ -62,9 +63,18 @@ def choisir_k_pour_energie(S, seuil=0.90):
 
 # === Main ===
 
-# Chemin vers l’image
-base_dir    = os.path.dirname(os.path.abspath(__file__))
-image_path  = os.path.join(base_dir, '..', 'images', 'image.jpg')
+#Sélection interactive de l'image ===
+
+# Ouvre une boîte de dialogue pour choisir un fichier image
+Tk().withdraw()  # Cache la fenêtre principale de Tkinter
+image_path = filedialog.askopenfilename(
+    title="Choisir une image",
+    filetypes=[("Fichiers image", "*.jpg *.jpeg *.png *.bmp *.tiff")]
+)
+
+if not image_path:
+    raise Exception("Aucune image sélectionnée.")
+
 
 # Chargement de l’image en niveaux de gris
 image = Image.open(image_path).convert('L')
