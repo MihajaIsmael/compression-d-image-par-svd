@@ -2,25 +2,28 @@
 <!-- Titre principal du projet -->
 
 ## 👥 Contributeurs
-- ANDRIANARIVONY Heritsihoarana Kevin  sds
+- ANDRIANARIVONY Heritsihoarana Kevin
 - Mouandhui IBADA
 - RANARIMANANA Liana Miotisoa
-- RAVALOMANDA Ismael
+- RAVALOMANDA Andrianarimihaja Ismael
 
 ## 🎯 Objectif du projet
 Ce projet applique la **décomposition en valeurs singulières (SVD)** à une image en niveaux de gris pour la **compresser**.
 
-Il permet :
-- de reconstruire l’image pour différents rangs `k`
-- de calculer l’erreur de compression (MSE)
-- de déterminer automatiquement le plus petit `k` conservant par exemple **90 % de l’énergie** de l’image
+Fonctionnalités :
+- Reconstruction de l’image avec différents rangs `k`
+- Calcul de l’erreur de compression (MSE)
+- Détermination automatique du plus petit `k` conservant un **seuil d’énergie donné** (par défaut : 90 %)
+- Animation progressive de la compression
+- Interface interactive pour sélectionner l’image à compresser
 
 ---
 
 ## 🧰 Bibliothèques utilisées
-- `numpy` → calcul numérique (SVD, tableaux…)
-- `matplotlib` → affichage des images et courbes
-- `Pillow` → lecture et conversion d’image
+- `numpy` → calcul numérique (SVD, tableaux…)  
+- `matplotlib` → affichage des images, courbes, animation  
+- `Pillow` → lecture et conversion d’image  
+- `tkinter` → sélection interactive de l’image (inclus dans la bibliothèque standard Python, nécessite `python3-tk` sous Linux)
 
 ---
 
@@ -46,8 +49,13 @@ Installer les dépendances:
 ```bash
 pip install -r requirements.txt
 ```
+Sous Linux, installer également Tkinter si besoin :
 
-Puis, depuis le dossier `src`, lance le script avec :
+```bash
+sudo apt-get install python3-tk
+```
+
+Puis pour lancer la compression, depuis le dossier `src`, lance le script avec :
 
 ```bash
 python subject.py
@@ -56,3 +64,4 @@ Ou simplement depuis la racine du projet avec:
 
 ```bash
 python src/subject.py
+```
